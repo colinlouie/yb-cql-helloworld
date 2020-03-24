@@ -34,10 +34,10 @@ object YBCqlHelloWorld {
       // Insert a row.
       val insert = """
         INSERT INTO ybdemo.employee
-          (id, name, age, language)
-        VALUES
-          (1, 'John', 35, 'Scala');
-      """
+        |(id, name, age, language)
+        |VALUES
+        |(1, 'John', 35, 'Scala');
+        """.trim.stripMargin('|').replaceAll("\n", " ")
       val insertResult = session.execute(insert)
       println(s"Inserted data: ${insert}")
 
@@ -47,19 +47,17 @@ object YBCqlHelloWorld {
          FROM  ybdemo.employee
          WHERE id = 1;
       """
-      // val selectResult = session.execute(select)
-      // List<Row> rows = selectResult.all();
-      // val rows = selectResult.all
       val rows = session.execute(select).all
       val name = rows.get(0).getString(0)
       val age = rows.get(0).getInt(1)
       val language = rows.get(0).getString(2)
       println(
-        s"""Query returned ${rows.size}
-           |row: name=${name},
-           |age=${age},
-           |language=${language}"""
-          .stripMargin('|').replaceAll("\n", " ")
+        s"""
+          Query returned ${rows.size}
+          |row: name=${name},
+          |age=${age},
+          |language=${language}
+        """.trim.stripMargin('|').replaceAll("\n", " ")
       )
 
       // Close the client.

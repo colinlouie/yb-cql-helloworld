@@ -21,11 +21,6 @@ You should see the following as the output.
 ```
 Created keyspace ybdemo
 Created table employee
-Inserted data:
-        INSERT INTO ybdemo.employee
-          (id, name, age, language)
-        VALUES
-          (1, 'John', 35, 'Scala');
-
+Inserted data: INSERT INTO ybdemo.employee (id, name, age, language) VALUES (1, 'John', 35, 'Scala');
 Query returned 1 row: name=John, age=35, language=Scala
 ```
